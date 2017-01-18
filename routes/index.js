@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var knex = require('knex')(require('../knexfile')[process.env.DB_ENV || 'development']);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -10,19 +11,26 @@ router.get('/success', function (req, res, next) {
   res.render('success', {token: req.query.token})
 })
 
-
 router.post('/submit', function (req, res, next) {
-  let links = {}
-  links.target_url = req.body.target_url
-  links.token = randomString(12)
-  console.log(links);
-  res.redirect(`/success?token=${links.token}`);
+  const token = randomString(12)
+
+  knex('routes')
+    .insert({
+      token: token,
+      target_url: req.body.target_url
+    })
+    .returning('*')
+    .then(function (route) {
+      console.log('successfully added', route);
+      res.redirect(`/success?token=${token}`);
+
+    })
+
 
 
 
 })
 module.exports = router;
-
 
 
 function randomString(length) {
