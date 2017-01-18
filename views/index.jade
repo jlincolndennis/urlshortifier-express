@@ -3,3 +3,19 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  
+  form(
+    name="shortifier" 
+    method="POST"
+    action="/submit"
+    )
+    label Link You Want Shortified: 
+      input(
+        type='url'
+        name='target_url'
+        placeholder='Paste URL Here'
+        )
+        
+    button(
+      type="submit"
+      ) Shortify!
