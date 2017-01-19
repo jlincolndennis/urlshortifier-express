@@ -1,6 +1,6 @@
 # Lincoln's URL Shortifier
 
-An quickn n dirty express app that "shortens" URLs. Made by [Lincoln](http://jlincolndennis.com). For knowledge, and stuff.
+An quickn n dirty express app that "shortens" URLs. Made by [Lincoln](http://jlincolndennis.com). For knowledge. And stuff.
 
 Fork n clone, or whatever, then `npm install`.
 
