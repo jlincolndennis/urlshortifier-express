@@ -14,7 +14,7 @@ router.get('/:token', function(req, res, next) {
         const target = url[0].target_url
         res.redirect(target)
       } else {
-        res.redirect('/oops')
+        res.render('oops', {error: "Looks like that is not a valid Shortified URL!"})
       }
     })
 });
