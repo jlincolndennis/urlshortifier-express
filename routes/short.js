@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var knex = require('knex')(require('../knexfile')[process.env.DB_ENV || 'development']);
 
-/* GET users listing. */
 router.get('/:token', function(req, res, next) {
   knex('routes')
     .where({token: req.params.token})

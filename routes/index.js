@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var knex = require('knex')(require('../knexfile')[process.env.DB_ENV || 'development']);
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Lincoln\'s Url Shortifier!' });
 });
@@ -26,11 +25,10 @@ router.post('/submit', function (req, res, next) {
     .catch(function (error) {
       console.log(error);
       res.render('oops', {error: "There was a problem generating your Shortified URL."})
-
     })
 })
-module.exports = router;
 
+module.exports = router;
 
 function randomString(length) {
     var text = "";
