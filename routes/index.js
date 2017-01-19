@@ -11,13 +11,8 @@ router.get('/success', function (req, res, next) {
   res.render('success', {token: req.query.token})
 })
 
-router.get('/oops', function (req, res, next) {
-  res.render('oops')
-})
-
 router.post('/submit', function (req, res, next) {
   const token = randomString(12)
-  // add duplicate token error handling
   knex('routes')
     .insert({
       token: token,
@@ -27,6 +22,11 @@ router.post('/submit', function (req, res, next) {
     .then(function (route) {
       console.log('successfully added', route);
       res.redirect(`/success?token=${token}`);
+    })
+    .catch(function (error) {
+      console.log(error);
+      res.render('oops', {error: "There was a problem generating your Shortified URL."})
+
     })
 })
 module.exports = router;

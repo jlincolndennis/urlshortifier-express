@@ -4,7 +4,6 @@ var knex = require('knex')(require('../knexfile')[process.env.DB_ENV || 'develop
 
 /* GET users listing. */
 router.get('/:token', function(req, res, next) {
-  // add invalid token error handling
   knex('routes')
     .where({token: req.params.token})
     .select('target_url')
