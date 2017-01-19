@@ -23,12 +23,7 @@ router.post('/submit', function (req, res, next) {
     .then(function (route) {
       console.log('successfully added', route);
       res.redirect(`/success?token=${token}`);
-
     })
-
-
-
-
 })
 module.exports = router;
 
