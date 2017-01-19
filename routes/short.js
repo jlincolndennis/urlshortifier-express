@@ -4,15 +4,18 @@ var knex = require('knex')(require('../knexfile')[process.env.DB_ENV || 'develop
 
 /* GET users listing. */
 router.get('/:token', function(req, res, next) {
+  // add invalid token error handling
   knex('routes')
     .where({token: req.params.token})
     .select('target_url')
     .then(function(url){
-      const target = url[0].target_url
-      res.redirect(target)
-
-      // res.json({token: `${req.params.token}`,
-      //           target_url: `${target}`})
+      console.log(url);
+      if(url.length !== 0) {
+        const target = url[0].target_url
+        res.redirect(target)
+      } else {
+        res.redirect('/oops')
+      }
     })
 });
 

@@ -11,9 +11,13 @@ router.get('/success', function (req, res, next) {
   res.render('success', {token: req.query.token})
 })
 
+router.get('/oops', function (req, res, next) {
+  res.render('oops')
+})
+
 router.post('/submit', function (req, res, next) {
   const token = randomString(12)
-
+  // add duplicate token error handling
   knex('routes')
     .insert({
       token: token,
